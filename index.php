@@ -1,3 +1,8 @@
+<?php
+	session_start();
+	//koneksi ke database
+	$koneksi = new mysqli("localhost","root","","shop");
+	?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -26,11 +31,7 @@
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
 	</head>
-    <?php
-	session_start();
-	//koneksi ke database
-	$koneksi = new mysqli("localhost","root","","shop");
-	?>
+    
     <body>		
 		<div id="top-bar" class="container">
 			<div class="row">    
@@ -101,7 +102,7 @@
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
-									<span class="pull-left"><span class="text"><span class="line">women <strong>Products</strong></span></span></span>
+									<span class="pull-left"><span class="text"><span class="line">ALL ITEM <strong>Products</strong></span></span></span>
 									<span class="pull-right">
 										<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
 									</span>
@@ -110,76 +111,26 @@
 									<div class="carousel-inner">
 										<div class="active item">
 											<ul class="thumbnails">												
+												<?php $ambil =$koneksi->query("select * from ck"); ?>
+                                                    <?php while($perproduct = $ambil->fetch_assoc()){ ?>											
 												<li class="span3">
 													<div class="product-box">
 														<span class="sale_tag"></span>
-														<p><a href="#"><img src="#" alt="" /></a></p>
-														<h2> </h2>
-														<a href="ck16.html" class="category">CHARLES & KEITH</a>
-														<p class="price"></p>
+														<p><img src=" <?php echo "images/".$perproduct['Foto']; ?>" alt="" /></p>
+														<p><strong><?php echo $perproduct['NamaBarang']; ?></strong><br/>
+														 CHARLES & KEITH</p>
+														<p class="price"><?php echo number_format($perproduct['Harga']); ?></p>
 													</div>
 												</li>
-												
+                                                 <?php } ?>
 											</ul>
 										</div>
-										
 										</div>
 									</div>							
 								</div>
 							</div>						
 						</div>
 						<br/>
-						<div class="row">
-							<div class="span12">
-								<h4 class="title">
-									<span class="pull-left"><span class="text"><span class="line">Man <strong>Products</strong></span></span></span>
-									<span class="pull-right">
-										<a class="left button" href="#myCarousel-2" data-slide="prev"></a><a class="right button" href="#myCarousel-2" data-slide="next"></a>
-									</span>
-								</h4>
-								<div id="myCarousel-2" class="myCarousel carousel slide">
-									<div class="carousel-inner">
-										<div class="active item">
-											<ul class="thumbnails">												
-												<li class="span3">
-													<div class="product-box">
-														<?php $ambil =$koneksi->query("select * from ck"); ?>
-                                                    <?php while($perproduct = $ambil->fetch_assoc()){ ?>
-														<span class="sale_tag"></span>
-														<p><img src=" <?php echo "images/".$perproduct['Foto']; ?>" alt="" /></p>
-														<p><strong><?php echo $perproduct['NamaBarang']; ?></strong><br/>
-														  PEDRO												</p>
-														<p class="price"><?php echo number_format($perproduct['Harga']); ?></p>
-													</div>
-												</li>
-											</ul>
-										</div>
-										 <?php } ?>
-										<div class="item">
-											<ul class="thumbnails">
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="g35.html"><img src="themes/images/pria/dompet35.jpg" alt="" /></a></p>
-														<a href="g35.html" class="title">GG SUPREME WALLET WITH WOLF</a><br/>
-														<a href="g35.html" class="category">GUCCI</a>
-														<p class="price">$45.50</p>
-													</div>
-												</li>
-												<li class="span3">
-													<div class="product-box">
-														<p><a href="g26.html"><img src="themes/images/pria/dompet26.jpg" alt="" /></a></p>
-														<a href="g26.html" class="title">GUCCI PRINT LEATHER SMALL PORTOFOLIO</a><br/>
-														<a href="g26.html" class="category">GUCCI</a>
-														<p class="price">$33.50</p>
-													</div>
-                                                     
-												</li>																										
-											</ul>
-										</div>
-									</div>							
-								</div>
-							</div>						
-						</div>
 						<div class="row feature_box">						
 							<div class="span4">
 								<div class="service">
