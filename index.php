@@ -172,6 +172,7 @@
 														<a href="g26.html" class="category">GUCCI</a>
 														<p class="price">$33.50</p>
 													</div>
+                                                     
 												</li>																										
 											</ul>
 										</div>
